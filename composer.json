@@ -1,5 +1,5 @@
 {
-    "name": "nikolay-oskin/contents",
+    "name": "marwan2/tableofcontents",
     "description": "Table of contents generator Laravel package for posts, news, articles or any other text",
     "keywords": ["laravel", "laravel-contents", "table-of-contents", "contents"],
     "authors": [
@@ -10,6 +10,7 @@
         }
     ],
     "license": "MIT",
+    "homepage": "https://github.com/marwan2/tableofcontents",
     "autoload": {
         "psr-4": {
           "NikolayOskin\\": "src/"
@@ -22,8 +23,7 @@
         }
     },
     "require": {
-        "php": "^7.0",
-        "illuminate/support": "5.5.*"
+        "php": "^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4"
