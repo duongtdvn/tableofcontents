@@ -1,6 +1,10 @@
-<ul>
+<ul class="toc_ul">
     @foreach($contents as $key => $header)
-        <li><a href="#header-{{$header['count']}}">{{$header['header']}}</a></li>
+        <li class="toc_li">
+            @if(isset($header['id']))
+                <a href="#header-{{$header['id']}}">{{strip_tags($header['header'])}}</a>
+            @endif
+        </li>
         @if (!empty($header['childs']))
             @include('nikolay-oskin.contents.table', ['contents' => $header['childs']])
         @endif

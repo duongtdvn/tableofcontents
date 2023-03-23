@@ -48,7 +48,7 @@ public function show ($id, Contents $contents)
     $post = Post::find($id);
     $header = $post->title;
     $body = $contents->fromText($post->body)->getHandledText();
-    $contents = $contents->getContents();
+    $contents = $contents->getContentsArray();
     return view('post', compact('header', 'body', 'contents');
 }
 ```
@@ -69,8 +69,6 @@ Your view:
 
 table.blade.php is the view with ul-li tags where you can add your css styles or make any other customization.
 
-#### Result
-![Alt text](http://joxi.ru/gmvBYaNHqZ0pdm.png "Optional title")
 
 ## Options
 By default contents created for h2-h6 tags. You can set headers tags which have been included in 'Table of contents'.
@@ -82,7 +80,7 @@ public function show ($id, Contents $contents)
     $post = Post::find($id);
     $contents->fromText($post->body)->setTags(['h2', 'h3']);
     $body = $contents->getHandledText();
-    $contents = $contents->getContents(); 
+    $contents = $contents->getContentsArray(); 
     return view('post', compact('body', 'contents');
     
     // Only h2 and h3 headers will be added to table of contents
@@ -98,7 +96,7 @@ public function show ($id, Contents $contents)
     $post = Post::find($id);
     $contents->fromText($post->body)->setTags(['h2', 'h3'])->setMinLength(5000);
     $body = $contents->getHandledText();
-    $contents = $contents->getContents();
+    $contents = $contents->getContentsArray();
     return view('post', compact('body', 'contents');
     
     // Table of contents will not be shown for texts length less than 5000 chars.
@@ -109,8 +107,20 @@ public function show ($id, Contents $contents)
 
 For Laravel 5.5+
 
-```sh
-composer require nikolay-oskin/contents
+Add to composer.json file:
+```json
+"repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/marwan2/tableofcontents.git"
+    }
+],
+```
+
+```json
+"require": {
+    "marwan2/tableofcontents": "*.*"
+},
 ```
 
 To copy views to your resource/views directory:
