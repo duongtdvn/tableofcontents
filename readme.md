@@ -43,12 +43,15 @@ Your 'post.blade.php' view looks stupid simple like this:
 This is how you can use this package to generate "Table of contents" in controller:
 
 ```php
-public function show ($id, Contents $contents)
+public function show ($id)
 {
     $post = Post::find($id);
     $header = $post->title;
-    $body = $contents->fromText($post->body)->getHandledText();
-    $contents = $contents->getContentsArray();
+
+    $toc = new \NikolayOskin\Contents\Contents();
+    $body = $toc->fromText($post->body)->getHandledText();
+    $contents = $toc->getContentsArray();
+
     return view('post', compact('header', 'body', 'contents');
 }
 ```
@@ -75,12 +78,15 @@ By default contents created for h2-h6 tags. You can set headers tags which have 
 
 Example:
 ```php
-public function show ($id, Contents $contents)
+public function show ($id)
 {
     $post = Post::find($id);
-    $contents->fromText($post->body)->setTags(['h2', 'h3']);
-    $body = $contents->getHandledText();
-    $contents = $contents->getContentsArray(); 
+
+    $toc = new \NikolayOskin\Contents\Contents();
+    $toc->fromText($post->body)->setTags(['h2', 'h3']);
+    $body = $toc->getHandledText();
+    $contents = $toc->getContentsArray(); 
+
     return view('post', compact('body', 'contents');
     
     // Only h2 and h3 headers will be added to table of contents
@@ -91,12 +97,15 @@ You can also set text min-length number so if the text length is below this numb
 
 Example:
 ```php
-public function show ($id, Contents $contents)
+public function show ($id)
 {
     $post = Post::find($id);
-    $contents->fromText($post->body)->setTags(['h2', 'h3'])->setMinLength(5000);
-    $body = $contents->getHandledText();
-    $contents = $contents->getContentsArray();
+
+    $toc = new \NikolayOskin\Contents\Contents();
+    $toc->fromText($post->body)->setTags(['h2', 'h3'])->setMinLength(5000);
+    $body = $toc->getHandledText();
+    $contents = $toc->getContentsArray();
+
     return view('post', compact('body', 'contents');
     
     // Table of contents will not be shown for texts length less than 5000 chars.

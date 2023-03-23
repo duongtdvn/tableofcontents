@@ -17,7 +17,7 @@ $text = '<h2>First h2 header</h2>
     <h2>Latest header</h2>';
 
 $tableOfContents = new \NikolayOskin\Contents\Contents();
-$tableOfContents->fromText($text)->setMinLength(200)->setTags(['h2', 'h3']);
+$tableOfContents->fromText($text)->setMinLength(100)->setTags(['h2', 'h3']);
 $handledBody = $tableOfContents->getHandledText();
 $contents = $tableOfContents->getContentsArray();
 
